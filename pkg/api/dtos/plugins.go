@@ -25,3 +25,10 @@ type PluginListItem struct {
 	Pinned  bool                `json:"pinned"`
 	Info    *plugins.PluginInfo `json:"info"`
 }
+
+type ImportDashboardCommand struct {
+	PluginId  string                         `json:"pluginId"`
+	Path      string                         `json:"path"`
+	Reinstall bool                           `json:"reinstall"`
+	Inputs    []plugins.ImportDashboardInput `json:"inputs"`
+}
