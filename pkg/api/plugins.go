@@ -48,6 +48,13 @@ func GetPluginList(c *middleware.Context) Response {
 			continue
 		}
 
+		// filter out built in data sources
+		if ds, exists := plugins.DataSources[pluginDef.Id]; exists {
+			if ds.BuiltIn {
+				continue
+			}
+		}
+
 		result = append(result, listItem)
 	}
 
@@ -119,6 +126,20 @@ func GetPluginDashboards(c *middleware.Context) Response {
 		return ApiError(500, "Failed to get plugin dashboards", err)
 	} else {
 		return Json(200, list)
+	}
+}
+
+func GetPluginReadme(c *middleware.Context) Response {
+	pluginId := c.Params(":pluginId")
+
+	if content, err := plugins.GetPluginReadme(pluginId); err != nil {
+		if notfound, ok := err.(plugins.PluginNotFoundError); ok {
+			return ApiError(404, notfound.Error(), nil)
+		}
+
+		return ApiError(500, "Could not get readme", err)
+	} else {
+		return Respond(200, content)
 	}
 }
 
