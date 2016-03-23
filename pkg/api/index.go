@@ -8,6 +8,16 @@ import (
 	"github.com/grafana/grafana/pkg/setting"
 )
 
+func GetTheme(theme string)string {
+  	var themes = [3]string {"dark", "light", "blue"}
+
+  	if theme == themes[0] || theme == themes[1] || theme == themes[2] {
+  	    return theme
+  	} else {
+  	   return "blue"
+  	}
+}
+
 func setIndexViewData(c *middleware.Context) (*dtos.IndexViewData, error) {
 	settings, err := getFrontendSettingsMap(c)
 	if err != nil {
@@ -21,7 +31,8 @@ func setIndexViewData(c *middleware.Context) (*dtos.IndexViewData, error) {
 			Login:          c.Login,
 			Email:          c.Email,
 			Name:           c.Name,
-			LightTheme:     c.Theme == "light",
+			// LightTheme:     c.Theme == "light",
+			Theme:          GetTheme(c.Theme),
 			OrgId:          c.OrgId,
 			OrgName:        c.OrgName,
 			OrgRole:        c.OrgRole,
@@ -44,8 +55,12 @@ func setIndexViewData(c *middleware.Context) (*dtos.IndexViewData, error) {
 	}
 
 	themeUrlParam := c.Query("theme")
-	if themeUrlParam == "light" {
+	/* if themeUrlParam == "light" {
 		data.User.LightTheme = true
+	}*/
+	//modified by shiliang
+	if len(themeUrlParam) > 0 {
+		data.User.Theme = GetTheme(themeUrlParam)
 	}
 
 	dashboardChildNavs := []*dtos.NavLink{

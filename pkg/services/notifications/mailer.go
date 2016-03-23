@@ -7,6 +7,8 @@ package notifications
 import (
 	"crypto/tls"
 	"fmt"
+	"bytes"
+	"errors"
 	"net"
 	"net/mail"
 	"net/smtp"
@@ -110,6 +112,8 @@ func sendToSmtpServer(recipients []string, msgContent []byte) error {
 			auth = smtp.CRAMMD5Auth(setting.Smtp.User, setting.Smtp.Password)
 		} else if strings.Contains(options, "PLAIN") {
 			auth = smtp.PlainAuth("", setting.Smtp.User, setting.Smtp.Password, host)
+		} else if strings.Contains(options, "LOGIN") {
+			auth = LoginAuth(setting.Smtp.User, setting.Smtp.Password, host)
 		}
 
 		if auth != nil {
@@ -183,4 +187,31 @@ func buildAndSend(msg *Message) (int, error) {
 			return 1, nil
 		}
 	}
+}
+
+type loginAuth struct {
+	username, password string
+	host               string
+}
+
+func LoginAuth(username, password, host string) smtp.Auth {
+	return &loginAuth{username, password, host}
+}
+
+func (a loginAuth) Start(server *smtp.ServerInfo) (string, []byte, error) {
+	if server.Name != a.host {
+		return "", nil, errors.New("wrong host name")
+	}
+	return "LOGIN", nil, nil
+}
+
+func (a loginAuth) Next(fromServer []byte, more bool) ([]byte, error) {
+	if more {
+		if bytes.EqualFold([]byte("username:"), fromServer) {
+			return []byte(a.username), nil
+		} else if bytes.EqualFold([]byte("password:"), fromServer) {
+			return []byte(a.password), nil
+		}
+	}
+	return nil, nil
 }

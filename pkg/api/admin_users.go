@@ -15,6 +15,7 @@ func AdminCreateUser(c *middleware.Context, form dtos.AdminCreateUserForm) {
 		Email:    form.Email,
 		Password: form.Password,
 		Name:     form.Name,
+		Theme:    "blue",
 	}
 
 	if len(cmd.Login) == 0 {

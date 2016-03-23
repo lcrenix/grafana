@@ -63,6 +63,7 @@ func SignUpStep2(c *middleware.Context, form dtos.SignUpStep2Form) Response {
 		Name:     form.Name,
 		Password: form.Password,
 		OrgName:  form.OrgName,
+		Theme:    "blue",
 	}
 
 	// verify email

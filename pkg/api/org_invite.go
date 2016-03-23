@@ -159,6 +159,7 @@ func CompleteInvite(c *middleware.Context, completeInvite dtos.CompleteInviteFor
 		Login:        completeInvite.Username,
 		Password:     completeInvite.Password,
 		SkipOrgSetup: true,
+		Theme:        "blue",
 	}
 
 	if err := bus.Dispatch(&cmd); err != nil {
