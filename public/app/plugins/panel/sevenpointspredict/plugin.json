@@ -1,0 +1,17 @@
+{
+  "type": "panel",
+  "name": "7-Points Predict",
+  "id": "sevenpointspredict",
+
+  "info": {
+    "author": {
+      "name": "Holmes QA",
+      "url": "http://wiki.baidu.com/display/MOODY/Welcome"
+    },
+    "logos": {
+      "small": "img/icn-graph-panel.svg",
+      "large": "img/icn-graph-panel.svg"
+    }
+  }
+}
+

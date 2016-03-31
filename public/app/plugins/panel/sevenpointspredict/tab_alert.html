@@ -1,0 +1,29 @@
+<div class="editor-row">
+	<div class="section gf-form-group width-30">
+		<h5 class="section-heading">Option</h5>
+
+		<gf-form-switch class="gf-form" label="Enable" label-class="width-7" checked="ctrl.panel.predict_7.alert.enable" on-change="ctrl.render()"></gf-form-switch>
+
+		<div ng-if="ctrl.panel.predict_7.alert.enable">
+			
+
+			<div class="gf-form-inline">
+				<gf-form-switch class="gf-form max-width-12" label="Ignore Latest" label-class="width-7" checked="ctrl.panel.predict_7.alert.ignore_latest" on-change="ctrl.render()"></gf-form-switch>
+				<div class="gf-form">
+					<label class="gf-form-label width-7">Threshold</label>
+					<input type="text" class="gf-form-input max-width-5" placeholder="0.3" ng-model="ctrl.panel.predict_7.alert.threshold" ng-change="ctrl.render()" ng-model-onblur>
+				</div>
+			</div>
+
+			<div class="gf-form">
+				<label class="gf-form-label width-7">Mail To</label>
+				<input type="text" class="gf-form-input max-width-20" placeholder="a@a.com,b@b.com" ng-model="ctrl.panel.predict_7.alert.mailto" ng-change="ctrl.render()" ng-model-onblur>
+			</div>
+
+			<div class="gf-form">
+				<label class="gf-form-label width-7">Message To</label>
+				<input type="text" class="gf-form-input max-width-20" placeholder="135xxx,138xxx" ng-model="ctrl.panel.predict_7.alert.msgto" ng-change="ctrl.render()" ng-model-onblur>
+			</div>
+		</div>
+	</div>
+</div>
