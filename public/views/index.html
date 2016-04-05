@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="theme-color" content="#000">
 
-    <title>Grafana</title>
+    <title>Moody Dashboard</title>
 
 		<link href='[[.AppSubUrl]]/public/css/fonts.min.css' rel='stylesheet' type='text/css'>
 
@@ -16,7 +16,7 @@
 		  <link rel="stylesheet" href="[[.AppSubUrl]]/public/css/grafana.dark.min.css">
 		[[end]]
 
-    <link rel="icon" type="image/png" href="[[.AppSubUrl]]/public/img/fav32.png">
+    	<link rel="icon" type="image/png" href="[[.AppSubUrl]]/public/img/fav32.png">
 		<base href="[[.AppSubUrl]]/" />
 
 	</head>
@@ -39,6 +39,12 @@
 			</div>
 
 			<div ng-view class="main-view"></div>
+			<div class="support">
+				<span>Powered by <a href="https://customers.influxdb.com/" target="_blank">InfluxDB</a>, <a href="http://grafana.org/" target="_blank">Grafana</a></span>
+				<span>Supported by <a href="mailto:moody-support@baidu.com?subject=合作需求">Holmes QA</a></span>
+				<span><a href="baidu://addgroup/?id=1501767">Baidu Hi</a></span>
+				<span><a href="http://wiki.baidu.com/pages/viewpage.action?pageId=173940865" target="_blank">About us</a></span>
+			</div>
 		</grafana-app>
   </body>
 

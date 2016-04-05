@@ -52,6 +52,8 @@ export class PanelCtrl {
     this.publishAppEvent('panel-instantiated', {scope: this.$scope});
     this.calculatePanelHeight();
     this.refresh();
+    // added by shiliang
+    this.initPanelUniqueId();
   }
 
   renderingCompleted() {
@@ -91,7 +93,7 @@ export class PanelCtrl {
     this.events.emit('init-edit-mode', null);
   }
 
-  addEditorTab(title, directiveFn, index?) {
+  addEditorTab(title, directiveFn, index?, replace?) {
     var editorTab = {title, directiveFn};
 
     if (_.isString(directiveFn)) {
@@ -100,7 +102,12 @@ export class PanelCtrl {
       };
     }
     if (index) {
-      this.editorTabs.splice(index, 0, editorTab);
+      // added by shiliang
+      if (replace) {
+        this.editorTabs[index] = editorTab;
+      } else {
+        this.editorTabs.splice(index, 0, editorTab);
+      }
     } else {
       this.editorTabs.push(editorTab);
     }
@@ -225,5 +232,11 @@ export class PanelCtrl {
       src: 'public/app/partials/inspector.html',
       scope: modalScope
     });
+  }
+  // added by shiliang
+  initPanelUniqueId() {
+    if (!this.panel.uniqueId) {
+      this.panel.uniqueId = this.panel.type + '-' + new Date().getTime();
+    }
   }
 }

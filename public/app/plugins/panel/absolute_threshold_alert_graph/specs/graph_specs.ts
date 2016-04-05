@@ -10,7 +10,7 @@ import TimeSeries from 'app/core/time_series2';
 import moment from 'moment';
 import {Emitter} from 'app/core/core';
 
-describe('grafanaSevenPointsPredict', function() {
+describe('grafanaAbsoluteThresholdAlertGraph', function() {
 
   beforeEach(angularMocks.module('grafana.directives'));
 
@@ -31,21 +31,7 @@ describe('grafanaSevenPointsPredict', function() {
             panel: {
               legend: {},
               grid: { },
-              yaxes: [
-                {
-                  min: null,
-                  max: null,
-                  format: 'short',
-                  logBase: 1
-                },
-                {
-                  min: null,
-                  max: null,
-                  format: 'short',
-                  logBase: 1
-                }
-              ],
-              xaxis: {},
+              y_formats: [],
               seriesOverrides: [],
               tooltip: {
                 shared: true
@@ -53,9 +39,7 @@ describe('grafanaSevenPointsPredict', function() {
             },
             renderingCompleted: sinon.spy(),
             hiddenSeries: {},
-            dashboard: {
-              getTimezone: sinon.stub().returns('browser')
-            },
+            dashboard: {timezone: 'browser'},
             range: {
               from: moment([2015, 1, 1, 10]),
               to: moment([2015, 1, 1, 22]),
@@ -167,7 +151,13 @@ describe('grafanaSevenPointsPredict', function() {
 
   graphScenario('when logBase is log 10', function(ctx) {
     ctx.setup(function(ctrl) {
-      ctrl.panel.yaxes[0].logBase = 10;
+      ctrl.panel.grid = {
+        leftMax: null,
+        rightMax: null,
+        leftMin: null,
+        rightMin: null,
+        leftLogBase: 10,
+      };
     });
 
     it('should apply axis transform and ticks', function() {

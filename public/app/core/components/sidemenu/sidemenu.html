@@ -3,7 +3,7 @@
 	<li class="sidemenu-org-section" ng-if="::ctrl.isSignedIn" class="dropdown">
 		<a class="sidemenu-org" href="profile">
 			<div class="sidemenu-org-avatar">
-				<img ng-src="{{::ctrl.user.gravatarUrl}}">
+				<!-- <img ng-src="{{::ctrl.user.gravatarUrl}}"> -->
 				<span class="sidemenu-org-avatar--missing">
 					<i class="fa fa-fw fa-user"></i>
 				</span>
@@ -39,7 +39,8 @@
 			<span class="fa fa-caret-right" ng-if="::item.children"></span>
 		</a>
 		<ul class="dropdown-menu" role="menu" ng-if="::item.children">
-			<li ng-repeat="child in ::item.children" ng-class="{divider: child.divider}">
+			<!-- <li ng-repeat="child in ::item.children" ng-class="{divider: child.divider}"> -->
+			<li ng-repeat="child in ::item.children" ng-class="{divider: child.divider}" ng-if="isHideLink(child.text)">
 				<a href="{{::child.url}}">
 					<i class="{{::child.icon}}" ng-show="::child.icon"></i>
 					{{::child.text}}
@@ -48,6 +49,13 @@
 		</ul>
 	</li>
 
+	<li>
+		<a class="sidemenu-item sidemenu-main-link" target="_blank" href="http://wiki.baidu.com/display/MOODY/Welcome">
+			<span class="icon-circle sidemenu-icon"><i class="fa fa-fw fa-wikipedia-w"></i></span>
+			<span class="sidemenu-item-text">Help Wiki</span>
+		</a>
+	</li>
+	
 	<li ng-show="::!ctrl.isSignedIn">
 		<a href="login" class="sidemenu-item" target="_self">
 			<span class="icon-circle sidemenu-icon"><i class="fa fa-fw fa-sign-in"></i></span>

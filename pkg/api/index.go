@@ -2,27 +2,24 @@ package api
 
 import (
 	"github.com/grafana/grafana/pkg/api/dtos"
+	"github.com/grafana/grafana/pkg/bus"
 	"github.com/grafana/grafana/pkg/middleware"
 	m "github.com/grafana/grafana/pkg/models"
 	"github.com/grafana/grafana/pkg/plugins"
 	"github.com/grafana/grafana/pkg/setting"
 )
 
-func GetTheme(theme string)string {
-  	var themes = [3]string {"dark", "light", "blue"}
-
-  	if theme == themes[0] || theme == themes[1] || theme == themes[2] {
-  	    return theme
-  	} else {
-  	   return "blue"
-  	}
-}
-
 func setIndexViewData(c *middleware.Context) (*dtos.IndexViewData, error) {
 	settings, err := getFrontendSettingsMap(c)
 	if err != nil {
 		return nil, err
 	}
+
+	prefsQuery := m.GetPreferencesWithDefaultsQuery{OrgId: c.OrgId, UserId: c.UserId}
+	if err := bus.Dispatch(&prefsQuery); err != nil {
+		return nil, err
+	}
+	prefs := prefsQuery.Result
 
 	var data = dtos.IndexViewData{
 		User: &dtos.CurrentUser{
@@ -31,13 +28,13 @@ func setIndexViewData(c *middleware.Context) (*dtos.IndexViewData, error) {
 			Login:          c.Login,
 			Email:          c.Email,
 			Name:           c.Name,
-			// LightTheme:     c.Theme == "light",
-			Theme:          GetTheme(c.Theme),
 			OrgId:          c.OrgId,
 			OrgName:        c.OrgName,
 			OrgRole:        c.OrgRole,
 			GravatarUrl:    dtos.GetGravatarUrl(c.Email),
 			IsGrafanaAdmin: c.IsGrafanaAdmin,
+			LightTheme:     prefs.Theme == "light",
+			Timezone:       prefs.Timezone,
 		},
 		Settings:           settings,
 		AppUrl:             setting.AppUrl,
@@ -55,12 +52,8 @@ func setIndexViewData(c *middleware.Context) (*dtos.IndexViewData, error) {
 	}
 
 	themeUrlParam := c.Query("theme")
-	/* if themeUrlParam == "light" {
+	if themeUrlParam == "light" {
 		data.User.LightTheme = true
-	}*/
-	//modified by shiliang
-	if len(themeUrlParam) > 0 {
-		data.User.Theme = GetTheme(themeUrlParam)
 	}
 
 	dashboardChildNavs := []*dtos.NavLink{

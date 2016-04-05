@@ -13,7 +13,7 @@
 				<i class="fa fa-pencil"></i>
 			</a>
 		</li>
-		<li class="tight-form-item">
+		<li class="tight-form-item" ng-if="!ctrl.panel.isSingleQuery">
 			<div class="dropdown">
 				<a class="pointer dropdown-toggle" data-toggle="dropdown" tabindex="1">
 					<i class="fa fa-bars"></i>
@@ -31,7 +31,7 @@
 				</ul>
 			</div>
 		</li>
-		<li class="tight-form-item last">
+		<li class="tight-form-item last" ng-if="!ctrl.panel.isSingleQuery">
 			<a class="pointer" tabindex="1" ng-click="ctrl.removeQuery(target)">
 				<i class="fa fa-trash"></i>
 			</a>

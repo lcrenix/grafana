@@ -54,7 +54,7 @@ $critical:              #EC2128;
 // Scaffolding
 // -------------------------
 
-$body-bg:  		  		    $white;
+$body-bg:  		  		    #eee;
 $page-bg:  		  		    $white;
 $body-color:    		    $gray-1;
 $text-color:    		    $gray-1;
@@ -154,7 +154,8 @@ $btn-inverse-text-color:  $dark-4;
 
 $btn-link-color: $gray-1;
 
-$iconContainerBackground: $white;
+$iconContainerBorder: transparent;
+$iconContainerBackground: transparent;
 
 // Forms
 // -------------------------
@@ -171,9 +172,9 @@ $input-label-bg:	        	     $gray-6;
 
 // Sidemenu
 // -------------------------
-$side-menu-bg:            $body-bg;
 $side-menu-item-hover-bg: $gray-6;
 $side-menu-opacity:		  0.97;
+$side-menu-bg:            #eee;
 
 // search
 $search-shadow: 0 5px 30px 0 lighten($gray-2, 30%);
@@ -223,14 +224,14 @@ $wellBackground:                  $gray-3;
 // -------------------------
 
 $navbarHeight:                    52px;
-$navbarBackgroundHighlight:       #f8f8f8;
-$navbarBackground:                #f8f8f8;
+$navbarBackgroundHighlight:       #4977fd;
+$navbarBackground:                #4977fd;
 $navbarBorder:                    1px solid $tight-form-border;
 
-$navbarText:                      #666;
-$navbarLinkColor:                 #666;
-$navbarLinkColorHover:            #333;
-$navbarLinkColorActive:           #555;
+$navbarText:                      #fff;
+$navbarLinkColor:                 #fff;
+$navbarLinkColorHover:            #fff;
+$navbarLinkColorActive:           #fff;
 $navbarLinkBackgroundHover:       transparent;
 $navbarLinkBackgroundActive:      darken($navbarBackground, 6.5%);
 $navbarDropdownShadow:            inset 0px 4px 7px -4px darken($body-bg, 20%);
@@ -290,3 +291,15 @@ $card-background: linear-gradient(135deg, $gray-5, $gray-6);
 $card-background-hover: linear-gradient(135deg, $gray-6, $gray-7);
 $card-shadow: -1px -1px 0 0 hsla(0, 0%, 100%, .1), 1px 1px 0 0 rgba(0, 0, 0, .1);
 
+// home
+$welcomeBannerImage: url('../img/moody-light-banner.png');
+$welcomeBannerPatternImage: url('../img/moody-light-banner-pattern.png');
+$welcomeTitleBefore: rgba(200, 200, 200, 0.5);
+$welcomeBannerTitleColor: #333;
+$welcomeBannerTextFill: rgba(255,255,255,1);
+$welcomeBannerButtonColor: #333;
+$welcomeBannerButtonFill: transparent;
+$welcomeBannerButtonHoverColor: #333;
+
+$supportColor: #aaa;
+$supportLinkHoverColor: #555;

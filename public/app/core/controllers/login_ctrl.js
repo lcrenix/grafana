@@ -23,6 +23,7 @@ function (angular, coreModule, config) {
 
     $scope.loginMode = true;
     $scope.submitBtnText = 'Log in';
+    $scope.lightTheme = config.bootData.user.lightTheme;
 
     $scope.init = function() {
       $scope.$watch("loginMode", $scope.loginModeChanged);

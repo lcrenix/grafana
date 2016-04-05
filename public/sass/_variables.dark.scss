@@ -146,6 +146,7 @@ $btn-inverse-text-color:      $link-color;
 
 $btn-link-color:              $gray-3;
 
+$iconContainerBorder: $body-bg;
 $iconContainerBackground:	    $black;
 
 // Forms
@@ -216,7 +217,7 @@ $navbarButtonBackgroundHighlight: lighten($navbarBackground, 5%);
 
 // Sidemenu
 // -------------------------
-$side-menu-bg:            $body-bg;
+$side-menu-bg:            #111;
 $side-menu-item-hover-bg: $dark-3;
 $side-menu-opacity:		  0.97;
 
@@ -264,3 +265,15 @@ $card-background-hover: linear-gradient(135deg, #343434, #262626);
 $card-shadow: -1px -1px 0 0 hsla(0, 0%, 100%, .1), 1px 1px 0 0 rgba(0, 0, 0, .3);
 
 
+// home
+$welcomeBannerImage: url('../img/moody-dark-banner.png');
+$welcomeBannerPatternImage: url('../img/moody-dark-banner-pattern.png');
+$welcomeTitleBefore: rgba(100, 100, 100, 0.5);
+$welcomeBannerTitleColor: #f8f8f8;
+$welcomeBannerTextFill: rgba(0,0,0,.6);
+$welcomeBannerButtonColor: #aaa;
+$welcomeBannerButtonFill: #151515;
+$welcomeBannerButtonHoverColor: #fff;
+
+$supportColor: #aaa;
+$supportLinkHoverColor: #fff;

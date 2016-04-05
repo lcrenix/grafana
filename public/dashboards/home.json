@@ -15,7 +15,7 @@
       "height": "90px",
       "panels": [
         {
-          "content": "<div class=\"text-center dashboard-header\">\n  <span>Home Dashboard</span>\n</div>",
+          "content": "<div class='welcome-banner'><div class='welcome-banner-content'><h1 class='welcome-banner-title'><span>Moody</span><span>Dashboard</span></h1><p class='welcome-banner-intro'>A powerful and elegant way to create, explore  and share dashboards and data</p><div class='contact-us'><a href='mailto:moody-support@baidu.com?subject=合作需求'>Contact us</a> <a href='http://wiki.baidu.com/display/MOODY/Welcome' target='_blank'>Find Help</a></div></div></div>",
           "editable": true,
           "id": 1,
           "mode": "html",

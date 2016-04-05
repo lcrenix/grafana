@@ -12,6 +12,7 @@ export class SideMenuCtrl {
   mainLinks: any;
   orgMenu: any;
   appSubUrl: string;
+  hiddenLinks: any;
 
   /** @ngInject */
   constructor(private $scope, private $location, private contextSrv, private backendSrv, private $element) {
@@ -21,6 +22,7 @@ export class SideMenuCtrl {
     this.showSignout = this.contextSrv.isSignedIn && !config['authProxyEnabled'];
 
     this.mainLinks = config.bootData.mainNavLinks;
+
     this.openUserDropdown();
 
     this.$scope.$on('$routeChangeSuccess', () => {
@@ -29,6 +31,11 @@ export class SideMenuCtrl {
       }
     });
 
+    // added by shiliang
+    this.$scope.hiddenLinks = ['Playlists'];
+    this.$scope.isHideLink = function (linkText) {
+      return this.hiddenLinks.indexOf(linkText) === -1;
+    };
   }
 
  getUrl(url) {
@@ -55,10 +62,12 @@ export class SideMenuCtrl {
        text: "Users",
        url: this.getUrl("/org/users"),
      });
-     this.orgMenu.push({
-       text: "API Keys",
-       url: this.getUrl("/org/apikeys"),
-     });
+
+//     added by shiliang
+//     this.orgMenu.push({
+//       text: "API Keys",
+//       url: this.getUrl("/org/apikeys"),
+//     });
    }
 
    this.orgMenu.push({cssClass: "divider"});

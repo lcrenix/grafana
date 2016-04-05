@@ -10,7 +10,8 @@ var datasourceTypes = [];
 
 var defaults = {
   name: '',
-  type: 'graphite',
+  //  type: 'graphite', 
+  type: 'influxdb', // added by shiliang  
   url: '',
   access: 'proxy',
   jsonData: {}
@@ -33,6 +34,7 @@ export class DataSourceEditCtrl {
     private $q,
     private backendSrv,
     private $routeParams,
+    private $filter,   // added by shiliang
     private $location,
     private datasourceSrv) {
 
@@ -57,8 +59,11 @@ export class DataSourceEditCtrl {
       }
 
       return this.backendSrv.get('/api/plugins', {enabled: 1, type: 'datasource'}).then(plugins => {
-        datasourceTypes = plugins;
-        this.types = plugins;
+//        added by shiliang
+//        datasourceTypes = plugins;
+//        this.types = plugins;
+        datasourceTypes = this.$filter('filter')(plugins, {id: 'influxdb'});
+        this.types = datasourceTypes;
       });
     }
 

@@ -91,7 +91,7 @@ var panelDefaults = {
   seriesOverrides: [],
 };
 
-class SevenPointsPredictCtrl extends MetricsPanelCtrl {
+class AbsoluteThresholdAlertGraphCtrl extends MetricsPanelCtrl {
   static template = template;
 
   hiddenSeries: any = {};
@@ -112,7 +112,6 @@ class SevenPointsPredictCtrl extends MetricsPanelCtrl {
     _.defaults(this.panel.tooltip, panelDefaults.tooltip);
     _.defaults(this.panel.grid, panelDefaults.grid);
     _.defaults(this.panel.legend, panelDefaults.legend);
-    this.panel.isSingleQuery = true;
 
     this.colors = $scope.$root.colors;
 
@@ -124,10 +123,7 @@ class SevenPointsPredictCtrl extends MetricsPanelCtrl {
   }
 
   onInitEditMode() {
-    //this.addEditorTab('Axes', 'public/app/plugins/panel/graph/tab_axes.html', 2);
-    //this.addEditorTab('Legend', 'public/app/plugins/panel/graph/tab_legend.html', 3);
-    //this.addEditorTab('Display', 'public/app/plugins/panel/graph/tab_display.html', 4);
-    this.addEditorTab('Alert', 'public/app/plugins/panel/sevenpointspredict/tab_alert.html', 2, true);
+    this.addEditorTab('Alert', 'public/app/plugins/panel/absolute_threshold_alert_graph/tab_alert.html', 2);
 
     this.logScales = {
       'linear': 1,
@@ -313,4 +309,4 @@ class SevenPointsPredictCtrl extends MetricsPanelCtrl {
   }
 }
 
-export {SevenPointsPredictCtrl, SevenPointsPredictCtrl as PanelCtrl}
+export {AbsoluteThresholdAlertGraphCtrl, AbsoluteThresholdAlertGraphCtrl as PanelCtrl}

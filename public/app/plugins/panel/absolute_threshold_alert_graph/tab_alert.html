@@ -1,0 +1,66 @@
+
+<div class="editor-row">
+	<div class="section" style="margin-bottom: 20px">
+		<div class="tight-form">
+			<div class="tight-form-list">
+				<li class="tight-form-item">
+					<editor-checkbox text="Enable" model="ctrl.panel.absolute_threshold_alert.enable" change="ctrl.render()"></editor-checkbox>
+				</li>
+				<li class="tight-form-item">
+					Max Threshold
+				</li>
+				<li>
+					<input type="text" class="input-small tight-form-input last"
+					ng-model="ctrl.panel.absolute_threshold_alert.max_threshold" ng-change="ctrl.render()" ng-disabled="!ctrl.panel.absolute_threshold_alert.enable" ng-model-onblur placeholder="0">
+				</li>
+				<li class="tight-form-item">
+					Min Threshold
+				</li>
+				<li>
+					<input type="text" class="input-small tight-form-input last"
+					ng-model="ctrl.panel.absolute_threshold_alert.min_threshold" ng-change="ctrl.render()" ng-disabled="!ctrl.panel.absolute_threshold_alert.enable" ng-model-onblur placeholder="0">
+                </li>
+                <li class="tight-form-item">
+                    Query Period
+                </li>
+                <li>
+                    <div class="gf-form-select-wrapper">
+                        <select class="gf-form-input" ng-model="ctrl.panel.absolute_threshold_alert.query_period" ng-disabled="!ctrl.panel.absolute_threshold_alert.enable" ng-options="f for f in ['5m', '10m', '1h', '1d']" ng-change="ctrl.render()"  placeholder="5min"></select>
+                    </div>
+                </li>
+                <li class="tight-form-item">
+                    Timespan (minutes)
+                </li>
+                <li>
+                    <input type="text" class="input-small tight-form-input last"
+                    ng-model="ctrl.panel.absolute_threshold_alert.time_span" ng-change="ctrl.render()" ng-disabled="!ctrl.panel.absolute_threshold_alert.enable" ng-model-onblur placeholder="10">
+                </li>
+			</ul>
+			<div class="clearfix"></div>
+		</div>
+		<div class="tight-form">
+			<ul class="tight-form-list">
+				<li class="tight-form-item" style="width: 100px">
+					Mail To
+				</li>
+				<li>
+					<input type="text" class="tight-form-input input-xlarge last"
+					ng-model="ctrl.panel.absolute_threshold_alert.mailto" ng-change="ctrl.render()" ng-model-onblur placeholder="a@a.com,b@b.com">
+				</li>
+			</ul>
+			<div class="clearfix"></div>
+		</div>
+		<div class="tight-form last">
+			<ul class="tight-form-list">
+				<li class="tight-form-item" style="width: 100px">
+					Message To
+				</li>
+				<li>
+					<input type="text" class="tight-form-input input-xlarge last"
+					ng-model="ctrl.panel.absolute_threshold_alert.msgto" ng-change="ctrl.render()" ng-model-onblur placeholder="135xxx,138xxx">
+				</li>
+			</ul>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>

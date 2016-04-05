@@ -64,6 +64,7 @@
   border-right: 1px solid $tight-form-border;
   background-color: $navbarButtonBackground;
   padding: 0.4rem 1.0rem 0.4rem 1rem;
+  color: $navbarLinkColor;
 
   .fa-caret-down {
     font-size: 70%;
@@ -73,18 +74,20 @@
   }
 
   &:hover {
+    color: $navbarLinkColorHover;
     background: $navbarButtonBackgroundHighlight;
   }
 
   img {
-    width: 30px;
+    width: 28px;
     position: relative;
-    top: -1px;
+    left: 1px;
+    top: 0;
   }
 
   .navbar-brand-btn-background {
     display: inline-block;
-    border: 1px solid $body-bg;
+    border: 1px solid $iconContainerBorder;
     padding: 4px;
     border-radius: 50%;
     background: $iconContainerBackground;
@@ -110,14 +113,14 @@
   margin: 0;
   font-size: 1.4em;
   border-right: 1px solid $tight-form-border;
-  color: darken($link-color, 5%);
+  color: darken($navbarLinkColor, 5%);
   background-color: $navbarButtonBackground;
   font-size: $font-size-lg;
   padding: 1rem 1rem 0.7rem 1rem;
 
   &:hover {
     background: $navbarButtonBackgroundHighlight;
-    color: $link-color;
+    color: $navbarLinkColorHover;
   }
 
   .fa-caret-down {
@@ -140,11 +143,12 @@
 
 .sidemenu-pinned {
   .navbar-brand-btn {
-    background-color: $page-bg;
+    background-color: $navbarBackground;
     width: $side-menu-width;
 
     .icon-gf-grafana_wordmark  {
       display: inline-block;
+      color: $navbarLinkColor;
     }
 
     .fa-caret-down {
@@ -153,7 +157,7 @@
 
     &:hover .fa-chevron-left {
       display: inline-block;
-      color: $text-color-weak;
+      color: $navbarLinkColorHover;
       position: relative;
       left: 1.3rem;
     }

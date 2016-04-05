@@ -1,0 +1,105 @@
+.welcome-banner{
+   background-image: $welcomeBannerImage;
+   background-repeat: no-repeat;
+   background-position: right center;
+   background-position-x: right;
+   background-position-y: center;
+    
+  .welcome-banner-content{
+    width: 1000px;
+    margin: 0 auto;
+    padding: 80px 0 90px;
+    
+    > h1 {
+      margin-top: 80px;
+      font-size: 45px;
+      color: $welcomeBannerTitleColor;
+      margin: 0 0 20px 0;
+      position: relative;
+      
+      &:before {
+      	content: "";
+        width: 30px;
+        height: 1.3em;
+        display: inline-block;
+        position: absolute;
+        left: -15px;
+        top: -0.25em;
+        background: -webkit-gradient(linear,left center,right center,from($welcomeTitleBefore),to(transparent));
+        background: -o-gradient(linear,left center,right center,from($welcomeTitleBefore),to(transparent));
+        background: -moz-gradient(linear,left center,right center,from($welcomeTitleBefore),to(transparent));
+        background: gradient(linear,left center,right center,from($welcomeTitleBefore),to(transparent));
+	  }
+      
+      span{
+        display: inline-block;
+
+        &:first-letter {
+          color: #ff8800;
+        }
+      
+        & + span {
+          margin-left: 0.5em;
+        }
+      }
+    }
+      
+    > p {
+      font-size: 20px;
+      color: #aaa;
+      margin-bottom: 20px;
+      padding: 4px 20px 4px 0;
+      display: inline-block;
+      background: -webkit-gradient(linear, left center, right center, from(transparent),to($welcomeBannerTextFill)); 
+      background: -o-gradient(linear, left center, right center, from(transparent),to($welcomeBannerTextFill));
+      background: -moz-gradient(linear, left center, right center, from(transparent),to($welcomeBannerTextFill));
+      background: gradient(linear, left center, right center, from(transparent), to($welcomeBannerTextFill));
+    }
+  
+    a {
+      width: 140px;
+      height: 36px;
+      line-height: 36px;
+      background-color: $welcomeBannerButtonFill;
+      border: 1px solid #ff8800;
+      color: $welcomeBannerButtonColor;
+  	  outline: none;
+  	  border-radius: 2px;
+      display: inline-block;
+      text-align: center;
+      text-decoration: none;
+  	  
+  	  &:hover {
+  	    background-color: rgba(255, 136, 0, 0.1);
+  	    color: $welcomeBannerButtonHoverColor
+  	  }
+  	  
+  	  & + a {
+  	    margin-left: 15px;
+  	  }
+    }
+  }
+}
+
+.support {
+  text-align: center;
+  font-size: 12px;
+  margin: 15px 0;
+  
+  > span {
+    color: $supportColor;
+    
+    > a {
+      color: $supportColor;
+      font-weight: bold;
+      
+      &:hover {
+         color: $supportLinkHoverColor;
+      }
+    }
+  }
+  
+  > span:not(:last-child) {
+  	margin-right: 50px;
+  }
+}
