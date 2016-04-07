@@ -105,7 +105,7 @@ class SevenPointsPredictCtrl extends MetricsPanelCtrl {
   colors: any = [];
 
   /** @ngInject */
-  constructor($scope, $injector, private annotationsSrv) {
+  constructor($scope, $injector, private annotationsSrv, $http) {
     super($scope, $injector);
 
     _.defaults(this.panel, panelDefaults);
@@ -176,16 +176,36 @@ class SevenPointsPredictCtrl extends MetricsPanelCtrl {
       return;
     }
 
-    this.datapointsWarning = false;
-    this.datapointsCount = 0;
-    this.datapointsOutside = false;
-    this.seriesList = dataList.map(this.seriesHandler.bind(this));
-    this.datapointsWarning = this.datapointsCount === 0 || this.datapointsOutside;
+    this.loadMonitorData().then(res => {
+      var monitorData = res.data.data;
+      var monitorSeriesList = [];
+      for (var i = 0, seriesLen = monitorData.series.length; i < seriesLen; i++) {
+        var tempSeriesData = monitorData.series[i];
+        var series = {
+          target: tempSeriesData.name,
+          datapoints: []
+        };
+        for (var j = 0, dataLen = tempSeriesData.data.length; j < dataLen; j++) {
+          series.datapoints.push([tempSeriesData.data[j].y, new Date('20' + monitorData.categories[j])]);
+        }
+        monitorSeriesList.push(series);
+      }
+      dataList = dataList.concat(monitorSeriesList);
 
-    this.annotationsPromise.then(annotations => {
-      this.loading = false;
-      this.seriesList.annotations = annotations;
-      this.render(this.seriesList);
+      this.datapointsWarning = false;
+      this.datapointsCount = 0;
+      this.datapointsOutside = false;
+      this.seriesList = dataList.map(this.seriesHandler.bind(this));
+      this.datapointsWarning = this.datapointsCount === 0 || this.datapointsOutside;
+
+      this.annotationsPromise.then(annotations => {
+        this.loading = false;
+        this.seriesList.annotations = annotations;
+        this.render(this.seriesList);
+      }, () => {
+        this.loading = false;
+        this.render(this.seriesList);
+      });
     }, () => {
       this.loading = false;
       this.render(this.seriesList);
@@ -310,6 +330,20 @@ class SevenPointsPredictCtrl extends MetricsPanelCtrl {
 
   exportCsvColumns() {
     fileExport.exportSeriesListToCsvColumns(this.seriesList);
+  }
+  // added by shiliang
+  loadMonitorData() {
+    var $http = this.$injector.get('$http');
+    var $filter = this.$injector.get('$filter');
+    var queryOption = {
+      params: {
+        r: 'monitor/display/get_waveinfo',
+        'channel_name': 'HD_' + this.dashboard.meta.slug + '-' + this.panel.uniqueId,
+        queryday: $filter('date')(new Date(), 'yyyy-mm-dd'),
+        callback: 'JSON_CALLBACK'
+      }
+    };
+    return $http.jsonp('http://10.216.121.19:8057/', queryOption);
   }
 }
 
